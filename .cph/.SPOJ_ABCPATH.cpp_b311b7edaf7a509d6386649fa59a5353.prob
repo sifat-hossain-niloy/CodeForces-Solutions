@@ -1,0 +1,1 @@
+{"name":"Local: SPOJ_ABCPATH","url":"/home/sifat/Projects/CF/SPOJ_ABCPATH.cpp","tests":[{"id":1647637770794,"input":"4 3\nABE\nCFG\nBDH\nABC\n0 0","output":"Case 1: 4"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/sifat/Projects/CF/SPOJ_ABCPATH.cpp","group":"local","local":true}

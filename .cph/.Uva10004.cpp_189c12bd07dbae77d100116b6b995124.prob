@@ -1,0 +1,1 @@
+{"name":"Local: Uva10004","url":"/home/sifat/Projects/CF/Uva10004.cpp","tests":[{"id":1647379626220,"input":"3 \n3\n0 1\n1 2\n2 0\n3 \n2\n0 1\n1 2\n\n9 \n8\n0 1\n0 2\n0 3\n0 4\n0 5\n0 6\n0 7\n0 8\n0","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/sifat/Projects/CF/Uva10004.cpp","group":"local","local":true}
