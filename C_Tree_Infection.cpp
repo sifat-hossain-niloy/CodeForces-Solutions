@@ -47,31 +47,59 @@ int main(){
             mp[x]++;
         }
         
-        int ma = 0;
+        priority_queue<ll> q1,q2;
         int sz = 0;
-        vector<ll>v;
+
         for (int i = 1;i<=n;i++)
         {   
             if(mp[i]>0){
-                ma = max(ma,mp[i]);
-                v.push_back(i);
+                
+                q1.push(mp[i]);
+                sz++;
             }
         }
-        sort(v.begin(),v.end());
-        ll ans = 0;
-        for (auto x : v )
+        sz++;
+        q1.push(1);
+
+        int cnt = 0,ans = 0;
+        while(!q1.empty())
         {
-            sz++;
-            if(x>=sz)ans++;
-            if(x>sz){
-                ans+= (x-sz+1)/2;
+            //cout << q1.top() <<  " ";
+            if(q1.top()-sz+cnt >0)
+            {
+                q2.push(q1.top()-sz+cnt);
+                
             }
-
+            q1.pop();
+            cnt++;
+            ans++;
 
         }
+        while(!q2.empty())
+        {
+            if(q2.top()-2>0)
+            {
+                q1.push(q2.top()-2);
+            }
+            q2.pop();
 
-        
-        
+            while(!q2.empty())
+            {
+                if(q2.top()-1>0)
+                {
+                    q1.push(q2.top()-1);
+                }
+                q2.pop();
+            }
+
+            while(!q1.empty())
+            {
+                q2.push(q1.top());
+                q1.pop();
+            }
+            ans++;
+        }
+
         cout << ans <<  endl;
         
            

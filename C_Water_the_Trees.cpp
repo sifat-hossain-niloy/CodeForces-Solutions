@@ -35,43 +35,53 @@ int main(){
     
     TC(t)
     {
-        int n;
+        ll n,ma = -1;
         cin >> n;
         ll a[n];
         FL(n)
         {
             cin >> a[i];
+            ma = max(ma,a[i]);
+        }
+        ll ans = 1e18,res;
 
-        }
-        sort(a,a+n);
-        ll ans = 0;
+        for (auto u : {ma,ma+1})
+        {
+            ll tw = 0,o = 0;
+            for (int i = 0;i<n;i++)
+            {
+                if((u-a[i])%2==1)
+                {
+                    o++;
+                    
+                }
+                tw+=((u-a[i])/2);
+                //cout << u-a[i] << endl;
+                
+            }
+            //cout << u << endl;
+            //cout << o <<  " " << tw << endl;
+            ll lo = 0,hi = 1e18;
+            while(lo<=hi)
+            {
+                ll mid = (lo+hi)/2;
+                ll cnt1 = (mid+1)/2,cnt2 = mid-cnt1;
 
-        FL(n)
-        {
-            ans+=(a[n-1]-a[i]);
-        }
+                if(o<=cnt1 && tw<=(cnt2+(cnt1-o)/2))
+                {
+                    res = mid;
+                    hi = mid-1;
+                }
+                else{
+                    lo = mid+1;
+                }
+                //cout << lo << " " << hi << endl;
 
-        ll aa ;
-        //cout << ans << endl;
-        if(ans%3==0)
-        {
-           aa = (ans/3);
-           aa*=2; 
+            }
+            ans = min(ans,res);
         }
-        else if(ans%3==1)
-        {
-            aa = (ans/3);
-            aa*=2;
-            aa++;
-        }
-        else{
-            aa = (ans/3);
-            aa*=2;
-            aa+=2;
-            //aa++;
-        }
-        cout << aa ;
-        cout << endl;
+        cout << ans << endl;
+        
     }
     return 0;
 }

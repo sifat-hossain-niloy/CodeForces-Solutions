@@ -29,46 +29,53 @@ long long binpow(long long a, long long b) {
     return res;
 }
 
+int dp[32769];
+
+
+int minop(int n)
+{
+    if(n%32768==0 ) return dp[n];
+
+    int ans = 100;
+    n%=32768;
+
+    if(dp[n+1]!=-1)
+    {
+        ans = min(ans,1+dp[n+1]);
+    }
+    else{
+        ans = min(ans,1+minop(n+1));
+    }
+    if(dp[(n*2)%32768]!=-1)
+    {
+        ans = min(ans,1+dp[(n*2)%32768]);
+    }
+    else{
+        int x = n*2;
+        ans = min(ans,1+minop(x));
+    }
+    return dp[n] = ans;
+    
+}
+
 
 int main(){
 
-    
-    
-    
     int n;
     cin >> n;
 
-    ll a[n];
+    int a[n];
+    memset(dp,-1,sizeof(dp));
+    dp[32768] = 0;
+    dp[0] = 0;
+
     FL(n)
     {
         cin >> a[i];
-    }
-    FL(n)
-    {
-        ll x = a[i];
-        if(x == 0) 
-        {
-            cout<<"0 "; 
-            continue;
-        }
-        ll  y = 0 , z = 0,w =1;
-        y = 32768 - a[i];
 
-
-        while(x != 0){
-            x = (x*2)%32768; 
-            z++;
-        }
-
-        x = a[i]+1;
-        while(x != 0){
-            x = (x*2)%32768; 
-            w++;
-        }
-        ll ans = min(min(y,z),w);
-        
+        ll ans = minop(a[i]);
         cout << ans << " ";
-        }
-        cout<<endl;
+    }
+    
     return 0;
 }

@@ -28,55 +28,36 @@ long long binpow(long long a, long long b) {
     }
     return res;
 }
-string s;
-ll ans;
-
 
 
 int main(){
-
+    Fastio
     
-    TC(t)
+    int t;
+    cin >> t;
+    while(t--)
     {
+        string s;
         cin >> s;
-        ll sz = s.size();
-        map<int,int>mp;
+        ll sz = s.size(),ans = 0,cnt = 0;
 
-        
+        map<char,int> mp;
+
         for (int i = 0;i<sz;i++)
         {
-            mp[s[i]-'a']++;
-        }
-        ll l = 0,r = sz-1,ans = 0;
-        if(sz == 1){
-            cout << 1 << endl;
-            continue;
-        }
-
-        while(l<r){
-            if(s[l]==s[l+1]){
-                mp[s[l]-'a']-=2;
-                l+=2;
-                continue;
-            }
-            if(s[r]==s[r-1]){
-                mp[s[r]-'a']-=2;
-                r-=2;
-                continue;
-            }
-            else{
-                int cnt = r-l+1;
-                int ma = -1;
-                for (int i = 0;i<27;i++)
-                {
-                    ma = max(ma,mp[i]);
-                }
-                cnt = cnt-ma+ma%2;
-                ans = cnt;
-                break;
+            mp[s[i]]++;
+            cnt++;
+            if(mp[s[i]]>1)
+            {
+                ans+=(cnt-2);
+                cnt = 0;
+                mp.clear();
             }
         }
+        ans+=cnt;
         cout << ans << endl;
+        
     }
+    
     return 0;
 }
